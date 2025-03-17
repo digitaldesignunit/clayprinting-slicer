@@ -20,7 +20,7 @@ class ExportScriptsAndSource(Grasshopper.Kernel.GH_ScriptInstance):
     """
     Author: Max Benjamin Eschenbach (based on a Python Script by Anders Holden Deleuran)
     License: MIT License
-    Version: 250314
+    Version: 250317
     """
 
     def get_source_version(self, source):
@@ -133,7 +133,7 @@ class ExportScriptsAndSource(Grasshopper.Kernel.GH_ScriptInstance):
                 cluster_scripts = self.process_document_objects(obj.Document(''), verbose=verbose)
                 # add cluster script dict to main dict
                 script_components.update(cluster_scripts)
-            
+
         return script_components
 
     def process_script_components(self, script_components: dict, set_category: str):
@@ -156,10 +156,10 @@ class ExportScriptsAndSource(Grasshopper.Kernel.GH_ScriptInstance):
             if script_id not in unique_script_components:
                 if script_type == 'GHPY':
                     OldScriptsDebug.append(f'{script_type} - {nickname} ({name})')
-                    OldScriptsDebug.append(f'    - IS AN OLD GHPYTHON SCRIPT!')
+                    OldScriptsDebug.append('    - IS AN OLD GHPYTHON SCRIPT!')
                 elif script_type == 'CS':
                     OldScriptsDebug.append(f'{script_type} - {nickname} ({name})')
-                    OldScriptsDebug.append(f'    - IS AN OLD C# SCRIPT!')
+                    OldScriptsDebug.append('    - IS AN OLD C# SCRIPT!')
                 if category != set_category:
                     if category == 'Maths':
                         CategoryDebug.append(f'{script_type} - {nickname} ({name})')
@@ -173,7 +173,7 @@ class ExportScriptsAndSource(Grasshopper.Kernel.GH_ScriptInstance):
                 else:
                     InfoMessages.append(f'{script_type} - {nickname} ({name})')
                     unique_script_components[script_id] = values
-            # DUPLICATE SCRIPT COMPONENTS
+            # ALREADY SEEN SCRIPT COMPONENTS
             else:
                 existing_obj = unique_script_components[script_id][3]
                 existing_source = unique_script_components[script_id][4]
@@ -193,11 +193,11 @@ class ExportScriptsAndSource(Grasshopper.Kernel.GH_ScriptInstance):
                 elif version > existing_version:
                     VersionDebug.append(f'{script_type} - {nickname} ({name})')
                     VersionDebug.append(f'    - VERSION {version} > ALREADY FOUND VERSION {existing_version}!')
-                    # REPLACE FOUND "NONE" VERSION WITH NAMED VERSION!
+                    # REPLACE THE OBJECT IN DICT WITH NEWER VERSION
                     raise
         return unique_script_components, OldScriptsDebug, CategoryDebug, VersionDebug, InfoMessages
 
-    def export_scriptcomp_usrobj(self, scriptcomp, usrobjpath):
+    def export_scriptcomp_usrobj(self, scriptcomp, usrobjpath, iconpath=''):
         """
         Automates the creation of a GHPython user object. Based on this thread:
         http://www.grasshopper3d.com/forum/topics/change-the-default-values-for-userobject-popup-menu
@@ -208,8 +208,11 @@ class ExportScriptsAndSource(Grasshopper.Kernel.GH_ScriptInstance):
             uo = Grasshopper.Kernel.GH_UserObject()
             # Get component object
             obj = scriptcomp[3]
-            # Set its properties based on the GHPython component properties
+            # Process icon
+            if iconpath:
+                obj.SetIconOverride(System.Drawing.Bitmap.FromFile(iconpath))
             uo.Icon = obj.Icon_24x24
+            # Set its properties based on the GHPython component properties
             uo.BaseGuid = obj.ComponentGuid
             uo.Exposure = ghenv.Component.Exposure.primary
             uo.Description.Name = obj.Name
@@ -261,7 +264,8 @@ class ExportScriptsAndSource(Grasshopper.Kernel.GH_ScriptInstance):
             ExportUserObjectsAndSource: bool,
             Category: str,
             UserObjFolder,
-            SourceFolder):
+            SourceFolder,
+            IconPath: str):
         # Init outputs
         OldScriptsDebug = Grasshopper.DataTree[object]()
         CategoryDebug = Grasshopper.DataTree[object]()
@@ -272,6 +276,7 @@ class ExportScriptsAndSource(Grasshopper.Kernel.GH_ScriptInstance):
         grasshopper_document = ghenv.Component.OnPingDocument()
         usrobjpath = os.path.normpath(os.path.abspath(UserObjFolder))
         srcpath = os.path.normpath(os.path.abspath(SourceFolder))
+        iconpath = os.path.normpath(os.path.abspath(IconPath))
 
         if RunComponentAnalysis:
             # loop over all objects on the grasshopper canvas
@@ -293,7 +298,7 @@ class ExportScriptsAndSource(Grasshopper.Kernel.GH_ScriptInstance):
             # - SAVE SOURCE
             for script_id, scriptcomp in unique_script_components.items():
                 loc = self.export_scriptcomp_source(scriptcomp, srcpath)
-                res = self.export_scriptcomp_usrobj(scriptcomp, usrobjpath)
+                res = self.export_scriptcomp_usrobj(scriptcomp, usrobjpath, iconpath)
                 print(res, loc)
         elif ExportUserObjectsAndSource and not RunComponentAnalysis:
             rml = ghenv.Component.RuntimeMessageLevel.Warning

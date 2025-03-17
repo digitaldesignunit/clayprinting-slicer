@@ -1,4 +1,3 @@
-// Grasshopper Script Instance
 #region Usings
 using System;
 using System.Linq;
@@ -34,7 +33,7 @@ public class Script_Instance : GH_ScriptInstance
     
     Author: Max Benjamin Eschenbach
     License: MIT License
-    Version: 250314
+    Version: 250317
     */
     #endregion
 

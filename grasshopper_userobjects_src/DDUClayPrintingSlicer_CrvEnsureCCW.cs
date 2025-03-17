@@ -32,7 +32,7 @@ public class Script_Instance : GH_ScriptInstance
 
     Author: Max Benjamin Eschenbach
     License: MIT License
-    Version: 250314
+    Version: 250317
     */
     #endregion
 
@@ -46,10 +46,17 @@ public class Script_Instance : GH_ScriptInstance
 
         CCWCrv = new Grasshopper.DataTree<object>();
 
-        if (Crv != null && Crv.ClosedCurveOrientation(Pln) == CurveOrientation.Clockwise)
+        if (Crv != null)
         {
-            Crv.Reverse();
-            CCWCrv = Crv;
+            if (Crv.ClosedCurveOrientation(Pln) == CurveOrientation.Clockwise)
+            {
+                Crv.Reverse();
+                CCWCrv = Crv;
+            }
+            else
+            {
+                CCWCrv = Crv;
+            }
         }
     }
 }

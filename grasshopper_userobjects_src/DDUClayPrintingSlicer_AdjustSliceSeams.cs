@@ -32,7 +32,7 @@ public class Script_Instance : GH_ScriptInstance
     
     Author: Max Benjamin Eschenbach
     License: MIT License
-    Version: 250314
+    Version: 250318
     */
     #endregion
 
@@ -54,6 +54,7 @@ public class Script_Instance : GH_ScriptInstance
             // reparametrize domain of first input curve
             Curves.Branches[0][0].Domain = new Rhino.Geometry.Interval(0.0, 1.0);
             // use adjust value for first seam adjustment
+            if (SeamAdjust < 0) SeamAdjust = 1.0 + SeamAdjust;
             Curves.Branches[0][0].ChangeClosedCurveSeam(SeamAdjust);
             // get initial sample point
             Point3d samplePt = Curves.Branches[0][0].PointAtStart;

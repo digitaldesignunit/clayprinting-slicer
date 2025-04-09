@@ -57,7 +57,7 @@ class PipelineController(Grasshopper.Kernel.GH_ScriptInstance):
     def unsubscribe_all(self):
         if self.EVKEY in st:
             for key in st[self.EVKEY]:
-                ukey = str(self.InstanceGuid) + "_" + key
+                ukey = str(ghenv.Component.InstanceGuid) + "_" + key
                 if ukey in st:
                     st[self.EVKEY][key] -= st[ukey]
                     st.Remove(ukey)

@@ -33,7 +33,7 @@ public class Script_Instance : GH_ScriptInstance
     
     Author: Max Benjamin Eschenbach
     License: MIT License
-    Version: 250317
+    Version: 250320
     */
     #endregion
 
@@ -87,6 +87,8 @@ public class Script_Instance : GH_ScriptInstance
         List<Curve> nextInnerLayer;
         
         // Loop over all outercurve branches in pairs
+
+        // HERE ARE PORBLEMS! --->
         if (OuterCurves.BranchCount == FloorLayerCount || InnerCurves.BranchCount == FloorLayerCount)
         {
             if (OuterCurves.BranchCount == FloorLayerCount)
@@ -109,6 +111,7 @@ public class Script_Instance : GH_ScriptInstance
             return;
         }
         
+        
         for (int i = 0; i < OuterCurves.BranchCount - 1; i++)
         {
             // THIS LAYER'S DATA ------------------------------------------------------
@@ -120,6 +123,7 @@ public class Script_Instance : GH_ScriptInstance
                 // ADD INITIAL LAYER TO FLOORS
                 if (FloorEnabled && FloorLayerCount > 0)
                 {
+                    
                     OuterFloors.AddRange(thisLayer, thisPath);
                     InnerFloors.AddRangeGracefully(InnerCurves.Branch(thisPath), thisPath);
                     continue;
@@ -188,7 +192,18 @@ public class Script_Instance : GH_ScriptInstance
                         InnerOverhangs.RemovePath(prevPath);
                     }
                 }
-                continue;
+                if (i >= OuterCurves.BranchCount - 2 && CapLayerCount > 0)
+                {
+                    OuterCaps.AddRange(nextLayer, nextPath);
+                    InnerCaps.AddRangeGracefully(InnerCurves.Branch(nextPath), nextPath);
+                }
+                else
+                {
+                    // THISLAYER IS REGULAR/SPARSE LAYER
+                    OuterRegulars.AddRange(nextLayer, nextPath);
+                    InnerRegulars.AddRangeGracefully(InnerCurves.Branch(nextPath), nextPath);
+                    continue;
+                }
             }
             // LAST LAYER(S) CAP CLASSIFICATION --------------------------------------------
             if (i >= OuterCurves.BranchCount - 2)

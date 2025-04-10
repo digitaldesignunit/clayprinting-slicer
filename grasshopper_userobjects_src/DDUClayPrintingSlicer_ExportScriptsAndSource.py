@@ -20,7 +20,7 @@ class ExportScriptsAndSource(Grasshopper.Kernel.GH_ScriptInstance):
     """
     Author: Max Benjamin Eschenbach (based on a Python Script by Anders Holden Deleuran)
     License: MIT License
-    Version: 250317
+    Version: 250410
     """
 
     def get_source_version(self, source):
@@ -274,9 +274,11 @@ class ExportScriptsAndSource(Grasshopper.Kernel.GH_ScriptInstance):
 
         # Iterate the canvas and get to the GHPython components
         grasshopper_document = ghenv.Component.OnPingDocument()
-        usrobjpath = os.path.normpath(os.path.abspath(UserObjFolder))
-        srcpath = os.path.normpath(os.path.abspath(SourceFolder))
-        iconpath = os.path.normpath(os.path.abspath(IconPath))
+        gh_dir = os.path.dirname(grasshopper_document.FilePath)
+
+        usrobjpath = os.path.normpath(os.path.abspath(os.path.join(gh_dir, UserObjFolder)))
+        srcpath = os.path.normpath(os.path.abspath(os.path.join(gh_dir, SourceFolder)))
+        iconpath = os.path.normpath(os.path.abspath(os.path.join(gh_dir, IconPath)))
 
         if RunComponentAnalysis:
             # loop over all objects on the grasshopper canvas

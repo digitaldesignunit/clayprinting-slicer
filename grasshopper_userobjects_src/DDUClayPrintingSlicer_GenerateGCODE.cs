@@ -29,7 +29,7 @@ public class Script_Instance : GH_ScriptInstance
 
     Author: Max Benjamin Eschenbach (Original Base Script by Tom Svilans)
     License: MIT License
-    Version: 250314
+    Version: 250410
     */
     #endregion
 
@@ -154,7 +154,7 @@ public class Script_Instance : GH_ScriptInstance
         // move 5mm upwards from last point
         gcode.Add(string.Format("G0 X{0:0.000} Y{1:0.000} Z{2:0.000} E{3:0.000} F{4}",
           p0.X, p0.Y, p0.Z + 5.0, 0.000, PrintSpeed));
-        // move to pause position
+        // move to pause position 100mm upwards from last point
         gcode.Add(string.Format("G0 X{0:0.000} Y{1:0.000} Z{2:0.000} E{3:0.000} F{4}",
           0.000, 0.000, p0.Z + 100.0, 0.000, PrintSpeed));
         // execute pause command

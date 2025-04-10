@@ -33,7 +33,7 @@ public class Script_Instance : GH_ScriptInstance
     
     Author: Max Benjamin Eschenbach
     License: MIT License
-    Version: 250320
+    Version: 250410
     */
     #endregion
 
@@ -85,45 +85,26 @@ public class Script_Instance : GH_ScriptInstance
         List<Curve> lastInnerLayer;
         List<Curve> thisInnerLayer;
         List<Curve> nextInnerLayer;
-        
-        // Loop over all outercurve branches in pairs
 
-        // HERE ARE PORBLEMS! --->
-        if (OuterCurves.BranchCount == FloorLayerCount || InnerCurves.BranchCount == FloorLayerCount)
+        // control flow int for looping and floor definition....
+        int subfactor = 1;
+        if (OuterCurves.BranchCount == FloorLayerCount)
         {
-            if (OuterCurves.BranchCount == FloorLayerCount)
-            {
-                OuterFloors = OuterCurves;
-            }
-            if (InnerCurves.BranchCount == FloorLayerCount)
-            {
-                InnerFloors = InnerCurves;
-            }
-            DebugMessage = ReportMessages;
-            OuterFloorLayers = OuterFloors;
-            OuterRegularLayers = OuterRegulars;
-            OuterOverhangLayers = OuterOverhangs;
-            OuterCapLayers = OuterCaps;
-            InnerFloorLayers = InnerFloors;
-            InnerRegularLayers = InnerRegulars;
-            InnerOverhangLayers = InnerOverhangs;
-            InnerCapLayers = InnerCaps;
-            return;
+            subfactor = 0;
         }
         
-        
-        for (int i = 0; i < OuterCurves.BranchCount - 1; i++)
+        for (int i = 0; i < OuterCurves.BranchCount - subfactor; i++)
         {
             // THIS LAYER'S DATA ------------------------------------------------------
             thisPath = new GH_Path(OuterCurves.Paths[i]);
             thisLayer = OuterCurves.Branches[i];
+            
             // FIRST LAYER(S) FLOOR DEFINITION -----------------------------------------
             if (i == 0 | i < FloorLayerCount)
             {
-                // ADD INITIAL LAYER TO FLOORS
                 if (FloorEnabled && FloorLayerCount > 0)
                 {
-                    
+                    // ADD INITIAL N LAYERS TO FLOORS IF FLOOR IS ACTIVE
                     OuterFloors.AddRange(thisLayer, thisPath);
                     InnerFloors.AddRangeGracefully(InnerCurves.Branch(thisPath), thisPath);
                     continue;
@@ -135,8 +116,8 @@ public class Script_Instance : GH_ScriptInstance
                     InnerRegulars.AddRangeGracefully(InnerCurves.Branch(thisPath), thisPath);
                     continue;
                 }
-                
             }
+
             // GET NEXT AND LAST LAYER DATA ------------------------------------------
             // Paths
             lastPath = new GH_Path(OuterCurves.Paths[i - 1]);
@@ -144,18 +125,20 @@ public class Script_Instance : GH_ScriptInstance
             // Layers
             lastLayer = OuterCurves.Branches[i - 1];
             nextLayer = OuterCurves.Branches[i + 1];
-            // AREA COMPUTATION AND DIFFERENC -----------------------------------------
+
+            // AREA COMPUTATION AND DIFFERENCE -----------------------------------------
             // Get cumulative area of outer layer curves
-            double lastArea = this.GetLayerArea(lastLayer);
-            double thisArea = this.GetLayerArea(thisLayer);
-            double nextArea = this.GetLayerArea(nextLayer);
+            double lastArea = this.GetLayerArea(lastLayer, lastPath);
+            double thisArea = this.GetLayerArea(thisLayer, thisPath);
+            double nextArea = this.GetLayerArea(nextLayer, nextPath);
             // Compute area difference between outer layers
             double diffLast = thisArea - lastArea;
             double diffNext = thisArea - nextArea;
             // Compute percentage difference
             double percLast = (diffLast / thisArea) * 100;
             double percNext = (diffNext / thisArea) * 100;
-            // REPORT MESSAGE
+
+            // COMPILE REPORT MESSAGE
             if (Debug)
             {
                 ReportMessages.Add(
@@ -205,6 +188,7 @@ public class Script_Instance : GH_ScriptInstance
                     continue;
                 }
             }
+
             // LAST LAYER(S) CAP CLASSIFICATION --------------------------------------------
             if (i >= OuterCurves.BranchCount - 2)
             {
@@ -238,8 +222,8 @@ public class Script_Instance : GH_ScriptInstance
                     InnerRegulars.AddRangeGracefully(InnerCurves.Branch(nextPath), nextPath);
                 }
                 continue;
-                
             }
+
             // OVERHANG CLASSIFICATION ---------------------------------------------------
             else if ((percLast > 0) && (Math.Abs(percLast) > Threshold))
             {
@@ -247,6 +231,7 @@ public class Script_Instance : GH_ScriptInstance
                 OuterOverhangs.AddRange(thisLayer, thisPath);
                 InnerOverhangs.AddRangeGracefully(InnerCurves.Branch(thisPath), thisPath);
             }
+
             // REGULAR / SPARSE CLASSIFICATION ------------------------------------------
             else
             {
@@ -268,12 +253,19 @@ public class Script_Instance : GH_ScriptInstance
         InnerCapLayers = InnerCaps;
     }
 
-    private double GetLayerArea(List<Curve> Layer)
+    private double GetLayerArea(List<Curve> Layer, GH_Path path = null)
     {
         double LayerArea = 0.0;
         for (int i = 0; i < Layer.Count; i++)
         {
-            AreaMassProperties amp = AreaMassProperties.Compute(Layer[i]);
+            AreaMassProperties amp = AreaMassProperties.Compute(Layer[i], 1.0);
+            if (amp == null)
+            {
+                this.Component.AddRuntimeMessage(
+                    GH_RuntimeMessageLevel.Warning,
+                    $"Area Computation failed for Layer {path}[{i}]!");
+                continue;
+            }
             LayerArea += amp.Area;
         }
         return LayerArea;

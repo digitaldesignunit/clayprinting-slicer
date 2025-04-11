@@ -56,6 +56,8 @@ jobs:
             # Format commit messages into a bulleted list
             release_notes=$(echo "$release_notes" | sed 's/^/- /')
           fi
+          # Replace newlines with %0A for proper multi-line formatting in GitHub Actions
+          release_notes=$(echo "$release_notes" | sed ':a;N;$!ba;s/\n/%0A/g')
           echo "release_notes=$release_notes" >> $GITHUB_OUTPUT
 
       - name: Prepare and zip the release folder
@@ -68,20 +70,12 @@ jobs:
           zip -r "${{ steps.version.outputs.zip_name }}" "$display_name"
           rm -rf "$display_name"
 
-      - name: Format release notes for GitHub
-        id: format_notes
-        run: |
-          # Ensure we replace \n with \r\n for proper line breaks in GitHub API
-          formatted_notes="${{ steps.release_notes.outputs.release_notes }}"
-          formatted_notes=$(echo "$formatted_notes" | sed 's/\n/\r\n/g')  # Replace \n with \r\n for Windows-style line breaks
-          echo "formatted_notes=$formatted_notes" >> $GITHUB_OUTPUT
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.new_version }}
           name: ${{ steps.version.outputs.release_name }}
           files: ${{ steps.version.outputs.zip_name }}
-          body: ${{ steps.format_notes.outputs.formatted_notes }}
+          body: ${{ steps.release_notes.outputs.release_notes }}
         env:
           GITHUB_TOKEN: ${{ secrets.CLAY3DPS_GH_RELEASE }}

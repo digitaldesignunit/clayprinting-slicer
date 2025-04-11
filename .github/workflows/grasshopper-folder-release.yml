@@ -1,0 +1,52 @@
+name: Grasshopper Folder Release
+
+on:
+  push:
+    paths:
+      - 'grasshopper_release/**'
+    branches:
+      - main
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Needed to get all tags
+
+      - name: Get latest version tag
+        id: get_tag
+        run: |
+          latest_tag=$(git tag --list 'v*' --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n 1)
+          if [ -z "$latest_tag" ]; then
+            latest_tag="v0.0.0"
+          fi
+          echo "latest_tag=$latest_tag" >> $GITHUB_OUTPUT
+
+      - name: Calculate next version and filenames
+        id: version
+        run: |
+          IFS='.' read -r major minor patch <<< "${{ steps.get_tag.outputs.latest_tag#v }}"
+          patch=$((patch + 1))
+          new_version="v$major.$minor.$patch"
+          release_name="DDU Clay 3D-Printing Slicer $new_version"
+          zip_name="ddu-clay-3d-printing-slicer-${new_version}.zip"
+          echo "new_version=$new_version" >> $GITHUB_OUTPUT
+          echo "release_name=$release_name" >> $GITHUB_OUTPUT
+          echo "zip_name=$zip_name" >> $GITHUB_OUTPUT
+
+      - name: Zip the grasshopper_release folder
+        run: |
+          zip -r "${{ steps.version.outputs.zip_name }}" grasshopper_release
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.new_version }}
+          name: ${{ steps.version.outputs.release_name }}
+          files: ${{ steps.version.outputs.zip_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

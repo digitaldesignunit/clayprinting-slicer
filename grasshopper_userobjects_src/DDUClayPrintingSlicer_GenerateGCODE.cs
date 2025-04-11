@@ -29,7 +29,7 @@ public class Script_Instance : GH_ScriptInstance
 
     Author: Max Benjamin Eschenbach (Original Base Script by Tom Svilans)
     License: MIT License
-    Version: 250410
+    Version: 250411
     */
     #endregion
 
@@ -111,29 +111,38 @@ public class Script_Instance : GH_ScriptInstance
     Point3d p0 = paths[0][0] + offset;
     gcode.AddRange(new string[]
       {
-      "; GCODE Generation Script by: Arkitekturens Teknologi (AT) + SuperFormLab",
-      "; Modified, adapted and extended by: Max Eschenbach, DDU - Digital Design Unit, TU Darmstadt",
-      string.Format("; Created by : {0}", System.Environment.UserName),
-      string.Format("; File name  : {0}", GrasshopperDocument.DisplayName),
-      string.Format("; Date time  : {0}", System.DateTime.Now.ToString("yyyy-MM-ddTHH\\:mm\\:ss")),
-      ";",
-      "M105 ; get extruder temperature",
-      "M109 S0 ; set extruder temp to 0 (deactivate)",
-      "M82 ; use absolute distances for extrusion",
-      "G90 ; use absolute coordintes",
-      "M106 S0 ; set fan speed to 0 (deactivate)",
-      "M107 ; fan off",
-      "M104 S0 T0 ; set hotend temperature to 0 (deactivate)",
-      "G28 ; home all axes",
-      "T0 ; set extruder to extruder 0 (first and only one)",
-      "G21 ; set units to millimetres",
-      // "M204 S200 ; set acceleration",
-      "G92 E0 ; reset E distance",
-      "; approach the first vertex using z safety height",
-      string.Format("G0 X0.0 Y0.0 Z{0:0.000} F{1}", p0.Z + z_safety, 3000),
-      "; approach first point with x and y coordinates",
-      string.Format("G1 X{0:0.000} Y{1:0.000} Z{2:0.000}", p0.X, p0.Y, p0.Z + z_safety),
-      "; --- END HEADER ---",
+        "; GCODE Generation Script by: Arkitekturens Teknologi (AT) + SuperFormLab",
+        "; Modified, adapted and extended by: Max Eschenbach, DDU - Digital Design Unit, TU Darmstadt",
+        string.Format("; Created by : {0}", System.Environment.UserName),
+        string.Format("; File name  : {0}", GrasshopperDocument.DisplayName),
+        string.Format("; Date time  : {0}", System.DateTime.Now.ToString("yyyy-MM-ddTHH\\:mm\\:ss")),
+        ";",
+        "; --- BEGIN_DDU_3DCLAYPRINTING_HEADER ---",
+        $"; PRINTSPEED={PrintSpeed}",
+        $"; TRAVELSPEED={TravelSpeed}",
+        $"; RETRACTIONSPEED={RetractionSpeed}",
+        $"; EXTRUSIONRATE={ExtrusionRate}",
+        $"; LAYERHEIGHT={LayerHeight}",
+        $"; LINEWIDTH={LineWidth}",
+        "; --- END_DDU_3DCLAYPRINTING_HEADER ---",
+        ";",
+        "M105 ; get extruder temperature",
+        "M109 S0 ; set extruder temp to 0 (deactivate)",
+        "M82 ; use absolute distances for extrusion",
+        "G90 ; use absolute coordintes",
+        "M106 S0 ; set fan speed to 0 (deactivate)",
+        "M107 ; fan off",
+        "M104 S0 T0 ; set hotend temperature to 0 (deactivate)",
+        "G28 ; home all axes",
+        "T0 ; set extruder to extruder 0 (first and only one)",
+        "G21 ; set units to millimetres",
+        // "M204 S200 ; set acceleration",
+        "G92 E0 ; reset E distance",
+        "; approach the first vertex using z safety height",
+        string.Format("G0 X0.0 Y0.0 Z{0:0.000} F{1}", p0.Z + z_safety, 3000),
+        "; approach first point with x and y coordinates",
+        string.Format("G1 X{0:0.000} Y{1:0.000} Z{2:0.000}", p0.X, p0.Y, p0.Z + z_safety),
+        "; --- END HEADER ---",
       });
 
 

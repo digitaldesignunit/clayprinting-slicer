@@ -34,7 +34,7 @@ public class Script_Instance : GH_ScriptInstance
     
     Author: Max Benjamin Eschenbach
     License: MIT License
-    Version: 250314
+    Version: 250411
     */
     #endregion
 
@@ -64,6 +64,33 @@ public class Script_Instance : GH_ScriptInstance
         List<System.Drawing.Color> _Colors = new List<System.Drawing.Color>();
         List<System.Drawing.Color> _ColorsProg = new List<System.Drawing.Color>();
         List<Polyline> _PrintPolyLines = new List<Polyline>();
+
+        if (Points == null || E == null)
+        {
+            if (Points == null){
+                this.Component.AddRuntimeMessage(
+                    GH_RuntimeMessageLevel.Warning,
+                    "Input Parameter Points failed to collect Data!"
+                );
+            }
+            if (E == null)
+            {
+                this.Component.AddRuntimeMessage(
+                    GH_RuntimeMessageLevel.Warning,
+                    "Input Parameter E failed to collect Data!"
+                );
+            }
+            MoveLines = _MoveLines;
+            MoveLinesProg = _MoveLinesProg;
+            Colors = _Colors;
+            ColorsProg = _ColorsProg;
+            PrintLines = _PrintLines;
+            PrintPolyLines = _PrintPolyLines;
+            return;
+        }
+        if (ExtrusionColor == null) ExtrusionColor = System.Drawing.Color.OrangeRed;
+        if (TravelColor == null) TravelColor = System.Drawing.Color.SkyBlue;
+        if (RetractionColor == null) RetractionColor = System.Drawing.Color.Green;
 
         Polyline pl_temp = new Polyline();
 

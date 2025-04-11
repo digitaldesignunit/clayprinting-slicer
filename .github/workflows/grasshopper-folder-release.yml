@@ -71,11 +71,9 @@ jobs:
       - name: Format release notes for GitHub
         id: format_notes
         run: |
-          # Ensure newlines are preserved, remove any unwanted escape sequences
+          # Ensure we replace \n with \r\n for proper line breaks in GitHub API
           formatted_notes="${{ steps.release_notes.outputs.release_notes }}"
-          formatted_notes=$(echo "$formatted_notes" | sed 's/\\n/\n/g')  # Replace escaped newlines with actual newlines
-          formatted_notes=$(echo "$formatted_notes" | sed 's/\r//g')  # Remove any carriage returns
-          formatted_notes=$(echo "$formatted_notes" | sed 's/"/\\"/g')  # Escape double quotes
+          formatted_notes=$(echo "$formatted_notes" | sed 's/\n/\r\n/g')  # Replace \n with \r\n for Windows-style line breaks
           echo "formatted_notes=$formatted_notes" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release

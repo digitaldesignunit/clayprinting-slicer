@@ -13,7 +13,7 @@ Technical University of Darmstadt
 - Clipper2GH ([Food4Rhino](https://www.food4rhino.com/en/app/clipper2gh) / [GitHub](https://github.com/AngusJohnson/Clipper2))
 
 ## Credits & References
-------------
+
 ORIGINAL GCODE GENERATOR SCRIPT BY TOM SVILANS
 ADAPTED BY MAX BENJAMIN ESCHENBACH 2023
 

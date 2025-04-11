@@ -29,11 +29,14 @@ jobs:
       - name: Calculate next version and filenames
         id: version
         run: |
-          IFS='.' read -r major minor patch <<< "${{ steps.get_tag.outputs.latest_tag#v }}"
+          latest="${{ steps.get_tag.outputs.latest_tag }}"
+          version=${latest#v}
+          IFS='.' read -r major minor patch <<< "$version"
           patch=$((patch + 1))
           new_version="v$major.$minor.$patch"
           release_name="DDU Clay 3D-Printing Slicer $new_version"
           zip_name="ddu-clay-3d-printing-slicer-${new_version}.zip"
+
           echo "new_version=$new_version" >> $GITHUB_OUTPUT
           echo "release_name=$release_name" >> $GITHUB_OUTPUT
           echo "zip_name=$zip_name" >> $GITHUB_OUTPUT

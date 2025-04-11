@@ -39,7 +39,7 @@ jobs:
           IFS='.' read -r major minor patch <<< "$version"
           patch=$((patch + 1))
           new_version="v$major.$minor.$patch"
-          release_name="DDU Clay 3D-Printing Slicer $new_version"
+          release_name="DDU Clay 3DPrinting Slicer $new_version"
           zip_name="ddu-clay-3d-printing-slicer-${new_version}.zip"
 
           echo "new_version=$new_version" >> $GITHUB_OUTPUT
@@ -78,6 +78,6 @@ jobs:
           files: ${{ steps.version.outputs.zip_name }}
           body: |
             ### Release Notes
-            New Release of the DDU 3DClayPrinting Slicer
+            New Release of the DDU Clay3DPrinting Slicer
         env:
           GITHUB_TOKEN: ${{ secrets.CLAY3DPS_GH_RELEASE }}

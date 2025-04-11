@@ -14,18 +14,18 @@ class PrintingTimeInfo(Grasshopper.Kernel.GH_ScriptInstance):
     """
     Author: Max Benjamin Eschenbach
     License: MIT License
-    Version: 250317
+    Version: 250411
     """
     def RunScript(self, Hours: int, Minutes: int, Seconds: int):
         InfoString = ''
-        if Hours > 0:
+        if Hours and Hours > 0:
             InfoString += '{0} hours'
-        if Minutes > 0:
-            if Hours > 0:
+        if Minutes and Minutes > 0:
+            if Hours and Hours > 0:
                 InfoString += ', '
             InfoString += '{1} minutes'
-        if Seconds > 0:
-            if Hours > 0 or Minutes > 0:
+        if Seconds and Seconds > 0:
+            if (Hours and Hours > 0) or (Minutes and Minutes > 0):
                 InfoString += ', '
             InfoString += '{2} seconds'
         InfoString += '.'

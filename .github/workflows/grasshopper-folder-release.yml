@@ -56,8 +56,8 @@ jobs:
             # Format commit messages into a bulleted list
             release_notes=$(echo "$release_notes" | sed 's/^/- /')
           fi
-          # Escape special characters and newlines
-          release_notes=$(echo "$release_notes" | sed 's/\r//g' | sed 's/"/\\"/g' | sed 's/\n/\\n/g')
+          # Escape special characters and newlines for GitHub release body
+          release_notes=$(echo "$release_notes" | sed 's/\r//g' | sed 's/"/\\"/g' | sed ':a;N;$!ba;s/\n/\\n/g')
           echo "release_notes=$release_notes" >> $GITHUB_OUTPUT
 
       - name: Prepare and zip the release folder

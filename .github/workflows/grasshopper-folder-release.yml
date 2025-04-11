@@ -46,9 +46,15 @@ jobs:
           echo "release_name=$release_name" >> $GITHUB_OUTPUT
           echo "zip_name=$zip_name" >> $GITHUB_OUTPUT
 
-      - name: Zip the grasshopper_release folder
+      - name: Prepare and zip the release folder
         run: |
-          zip -r "${{ steps.version.outputs.zip_name }}" grasshopper_release
+          display_name="DDU Clay3DPrinting Slicer ${{ steps.version.outputs.new_version }}"
+          mkdir "$display_name"
+          cp -r grasshopper_release/* "$display_name/"
+          cp README.md "$display_name/"
+          cp LICENSE "$display_name/"
+          zip -r "${{ steps.version.outputs.zip_name }}" "$display_name"
+          rm -rf "$display_name"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2

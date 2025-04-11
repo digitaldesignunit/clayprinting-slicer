@@ -16,9 +16,6 @@ jobs:
   create-release:
     runs-on: ubuntu-latest
 
-    env:
-      ENABLE_ESCAPES: true  # Enable the use of \n and \t freely
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -59,7 +56,8 @@ jobs:
             # Format commit messages into a bulleted list
             release_notes=$(echo "$release_notes" | sed 's/^/- /')
           fi
-          # With ENABLE_ESCAPES=true, \n and \t can be used freely
+          # Replace newlines with the literal string '\n' for proper multi-line formatting in GitHub Actions
+          release_notes="${release_notes//$'\n'/'\n'}"
           echo "release_notes=$release_notes" >> $GITHUB_OUTPUT
 
       - name: Prepare and zip the release folder

@@ -53,11 +53,11 @@ jobs:
           if [ -z "$release_notes" ]; then
             release_notes="No significant changes."
           else
-            # Format commit messages into a bulleted list
+            # Format commit messages into a bulleted list, keeping newlines intact
             release_notes=$(echo "$release_notes" | sed 's/^/- /')
           fi
-          # Clean commit messages (remove carriage returns and newlines within)
-          release_notes=$(echo "$release_notes" | sed 's/\r//g' | tr '\n' ' ' | sed 's/  */ /g')
+          # Clean commit messages (remove carriage returns)
+          release_notes=$(echo "$release_notes" | sed 's/\r//g')
           echo "release_notes=$release_notes" >> $GITHUB_OUTPUT
 
       - name: Prepare and zip the release folder

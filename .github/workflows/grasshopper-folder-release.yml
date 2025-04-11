@@ -56,8 +56,6 @@ jobs:
             # Format commit messages into a bulleted list
             release_notes=$(echo "$release_notes" | sed 's/^/- /')
           fi
-          # Escape special characters and newlines for GitHub release body
-          release_notes=$(echo "$release_notes" | sed 's/\r//g' | sed 's/"/\\"/g' | sed ':a;N;$!ba;s/\n/\\n/g')
           echo "release_notes=$release_notes" >> $GITHUB_OUTPUT
 
       - name: Prepare and zip the release folder
@@ -70,12 +68,22 @@ jobs:
           zip -r "${{ steps.version.outputs.zip_name }}" "$display_name"
           rm -rf "$display_name"
 
+      - name: Format release notes for GitHub
+        id: format_notes
+        run: |
+          # Ensure newlines are preserved, remove any unwanted escape sequences
+          formatted_notes="${{ steps.release_notes.outputs.release_notes }}"
+          formatted_notes=$(echo "$formatted_notes" | sed 's/\\n/\n/g')  # Replace escaped newlines with actual newlines
+          formatted_notes=$(echo "$formatted_notes" | sed 's/\r//g')  # Remove any carriage returns
+          formatted_notes=$(echo "$formatted_notes" | sed 's/"/\\"/g')  # Escape double quotes
+          echo "formatted_notes=$formatted_notes" >> $GITHUB_OUTPUT
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.new_version }}
           name: ${{ steps.version.outputs.release_name }}
           files: ${{ steps.version.outputs.zip_name }}
-          body: ${{ steps.release_notes.outputs.release_notes }}
+          body: ${{ steps.format_notes.outputs.formatted_notes }}
         env:
           GITHUB_TOKEN: ${{ secrets.CLAY3DPS_GH_RELEASE }}

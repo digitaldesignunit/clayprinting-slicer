@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: write  # required for release creation
 
 jobs:
   create-release:
@@ -20,7 +20,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Needed to get all tags
+          fetch-depth: 0  # Fetch all tags
 
       - name: Get latest version tag
         id: get_tag
@@ -46,6 +46,16 @@ jobs:
           echo "release_name=$release_name" >> $GITHUB_OUTPUT
           echo "zip_name=$zip_name" >> $GITHUB_OUTPUT
 
+      - name: Generate release notes from commit messages
+        id: release_notes
+        run: |
+          release_notes=$(git log "${{ steps.get_tag.outputs.latest_tag }}"..HEAD --oneline --no-merges)
+          if [ -z "$release_notes" ]; then
+            release_notes="No significant changes."
+          fi
+          echo "$release_notes" > release_notes.txt
+          echo "release_notes=$release_notes" >> $GITHUB_OUTPUT
+
       - name: Prepare and zip the release folder
         run: |
           display_name="DDU Clay3DPrinting Slicer ${{ steps.version.outputs.new_version }}"
@@ -62,5 +72,6 @@ jobs:
           tag_name: ${{ steps.version.outputs.new_version }}
           name: ${{ steps.version.outputs.release_name }}
           files: ${{ steps.version.outputs.zip_name }}
+          body: ${{ steps.release_notes.outputs.release_notes }}
         env:
           GITHUB_TOKEN: ${{ secrets.CLAY3DPS_GH_RELEASE }}

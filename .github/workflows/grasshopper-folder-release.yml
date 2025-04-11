@@ -53,8 +53,8 @@ jobs:
           if [ -z "$release_notes" ]; then
             release_notes="No significant changes."
           fi
-          # Clean up the commit messages and escape special characters
-          release_notes=$(echo "$release_notes" | sed 's/"/\\"/g' | sed 's/\n/\\n/g')
+          # Clean commit messages
+          release_notes=$(echo "$release_notes" | tr '\n' ' ' | sed 's/"/\\"/g' | sed 's/\r//g')
           echo "release_notes=$release_notes" >> $GITHUB_OUTPUT
 
       - name: Prepare and zip the release folder

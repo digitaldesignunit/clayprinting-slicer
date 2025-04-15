@@ -1,11 +1,11 @@
 # clayprinting-slicer
 Grasshopper-based slicer for printing clay on the WASP40100 delta printer.
 
-Author: Max Benjamin Eschenbach  
-Contributors: Mirko Dutschke, Iyad Ghazal  
+**Author: Max Benjamin Eschenbach**  
+**Contributors:** Mirko Dutschke, Iyad Ghazal  
 
-Digital Design Unit (DDU)  
-Prof. Dr.-Ing. Oliver Tessmann  
+**Digital Design Unit (DDU)**  
+*Prof. Dr.-Ing. Oliver Tessmann*  
 Fachbereich Architektur  
 Technical University of Darmstadt  
 

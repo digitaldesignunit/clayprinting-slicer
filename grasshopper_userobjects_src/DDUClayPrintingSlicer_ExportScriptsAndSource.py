@@ -20,7 +20,7 @@ class ExportScriptsAndSource(Grasshopper.Kernel.GH_ScriptInstance):
     """
     Author: Max Benjamin Eschenbach (based on a Python Script by Anders Holden Deleuran)
     License: MIT License
-    Version: 250410
+    Version: 250415
     """
 
     def get_source_version(self, source):
@@ -189,6 +189,7 @@ class ExportScriptsAndSource(Grasshopper.Kernel.GH_ScriptInstance):
                 elif version < existing_version:
                     VersionDebug.append(f'{script_type} - {nickname} ({name})')
                     VersionDebug.append(f'    - VERSION {version} < {existing_version}! Continuing...')
+                    # REPLACE THE SOURCE OF THE LOWER VERSION WITH HIGHER VERSION SOURCE!
                     continue
                 elif version > existing_version:
                     VersionDebug.append(f'{script_type} - {nickname} ({name})')

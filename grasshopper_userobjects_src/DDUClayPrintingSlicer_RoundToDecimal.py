@@ -16,15 +16,17 @@ class RoundToDecimal(Grasshopper.Kernel.GH_ScriptInstance):
     """
     Author: Max Benjamin Eschenbach
     License: MIT License
-    Version: 250314
+    Version: 250423
     """
 
     def RunScript(self,
             Numbers: System.Collections.Generic.List[float],
             DecimalPlaces: System.Collections.Generic.List[int]):
-
+        
         if not DecimalPlaces:
             DecimalPlaces = [0]
+        else:
+            DecimalPlaces = list(DecimalPlaces)
 
         if Numbers and Numbers != [None]:
             rounded = []

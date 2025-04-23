@@ -25,7 +25,7 @@ class PipelineController(Grasshopper.Kernel.GH_ScriptInstance):
     """
     Author: Max Benjamin Eschenbach
     License: MIT License
-    Version: 250423
+    Version: 250314
     """
 
     # UNIQUE STICKY KEY OR STORING LAYERNAMES

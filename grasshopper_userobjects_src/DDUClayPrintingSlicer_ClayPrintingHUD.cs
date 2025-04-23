@@ -32,13 +32,14 @@ public class Script_Instance : GH_ScriptInstance
     
     Author: Max Eschenbach
     License: MIT License
-    Version: 250312
+    Version: 250423
     */
     #endregion
 
     List<string> INFO;
     List<string> LHA;
     List<string> OHA;
+    List<string> OHO;
 
     int hmargin;
     int vmargin;
@@ -54,6 +55,7 @@ public class Script_Instance : GH_ScriptInstance
 		List<string> INFO,
 		List<string> LHA,
 		List<string> OHA,
+		List<string> OHO,
 		int MarginH,
 		int MarginV,
 		string Font,
@@ -74,6 +76,7 @@ public class Script_Instance : GH_ScriptInstance
         this.INFO = INFO;
         this.LHA = LHA;
         this.OHA = OHA;
+        this.OHO = OHO;
         
         // settings
         this.hmargin = MarginH;
@@ -154,14 +157,14 @@ public class Script_Instance : GH_ScriptInstance
                 }
             }
 
-            // OVERHANG ANALYSIS
+            // OVERHANG ANGLE ANALYSIS
             if (this.OHA != null)
             {
                 if (this.INFO != null && this.LHA != null) { anchor_pt += new Point2d(0, this.txtsize * 4.5); }
                 else if (this.INFO != null && this.LHA == null) { anchor_pt += new Point2d(0, this.txtsize * 1.5); }
                 // Headline
                 args.Display.Draw2dText(
-                    "OVERHANG ANALYSIS",
+                    "OVERHANG ANGLE ANALYSIS",
                     this.txtcolor,
                     anchor_pt,
                     false,
@@ -174,6 +177,36 @@ public class Script_Instance : GH_ScriptInstance
                 {
                     args.Display.Draw2dText(
                         ohastring,
+                        this.txtcolor,
+                        anchor_pt,
+                        false,
+                        this.txtsize,
+                        this.font
+                    );
+                    anchor_pt += new Point2d(0, this.txtsize * 1.25);
+                }
+            }
+
+            // OVERHANG OFFSET ANALYSIS
+            if (this.OHO != null)
+            {
+                if (this.INFO != null && this.LHA != null) { anchor_pt += new Point2d(0, this.txtsize * 4.5); }
+                else if (this.INFO != null && this.LHA == null) { anchor_pt += new Point2d(0, this.txtsize * 1.5); }
+                // Headline
+                args.Display.Draw2dText(
+                    "OVERHANG OFFSET ANALYSIS",
+                    this.txtcolor,
+                    anchor_pt,
+                    false,
+                    this.txtsize,
+                    this.font + " Bold"
+                );
+                anchor_pt += new Point2d(0, this.txtsize * 1.25);
+                // Stream
+                foreach (string ohostring in this.OHO)
+                {
+                    args.Display.Draw2dText(
+                        ohostring,
                         this.txtcolor,
                         anchor_pt,
                         false,

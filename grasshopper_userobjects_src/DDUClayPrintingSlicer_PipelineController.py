@@ -25,7 +25,7 @@ class PipelineController(Grasshopper.Kernel.GH_ScriptInstance):
     """
     Author: Max Benjamin Eschenbach
     License: MIT License
-    Version: 250314
+    Version: 250423
     """
 
     # UNIQUE STICKY KEY OR STORING LAYERNAMES
@@ -49,7 +49,7 @@ class PipelineController(Grasshopper.Kernel.GH_ScriptInstance):
             st[self.EVKEY] = {}
         if key not in st[self.EVKEY]:
             st[self.EVKEY][key] = event
-        ukey = str(self.InstanceGuid) + "_" + key
+        ukey = str(ghenv.Component.InstanceGuid) + "_" + key
         if ukey not in st:
             st[ukey] = func
             event += st[ukey]
@@ -60,7 +60,7 @@ class PipelineController(Grasshopper.Kernel.GH_ScriptInstance):
                 ukey = str(ghenv.Component.InstanceGuid) + "_" + key
                 if ukey in st:
                     st[self.EVKEY][key] -= st[ukey]
-                    st.Remove(ukey)
+                    st.pop(ukey)
         st[self.EVKEY] = {}
 
     def flagEvent(self, sender, e):

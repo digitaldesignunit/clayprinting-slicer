@@ -11,7 +11,7 @@ Technical University of Darmstadt
 
 ## Dependencies
 
-- Clipper2GH ([Install via Rhino 8 PackageManager](https://rhino8://package/search?name=Clipper2) / [GitHub](https://github.com/seghier/Clipper2GH), based on [Clipper2](https://github.com/AngusJohnson/Clipper2))
+- Clipper2GH (<a href="rhino8://package/search?name=Clipper2"></a>Install via Rhino 8 PackageManager / [GitHub](https://github.com/seghier/Clipper2GH), based on [Clipper2](https://github.com/AngusJohnson/Clipper2))
 
 ## Credits & References
 

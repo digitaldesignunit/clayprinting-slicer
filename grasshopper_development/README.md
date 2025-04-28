@@ -2,6 +2,17 @@
 
 ## Copy-Paste Info for Grasshopper Development
 
+### Python Virtual Environment
+
+```
+#! python3
+# venv: DDU_SLICER
+# potpourri3d
+# numpy==1.26.4
+# scipy==1.13.0
+# scikit-learn==1.4.2
+```
+
 ### Author & Version
 
 ```

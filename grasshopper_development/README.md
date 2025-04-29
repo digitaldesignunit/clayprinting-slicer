@@ -23,16 +23,16 @@ Version: 250314
 
 ### Component Params (Python)
 ```
-# set component params
-ghenv.Component.Name = "GenerateGCODE";
-ghenv.Component.NickName = "GenerateGCODE";
-ghenv.Component.Category = "DDUClayPrintingSlicer";
-ghenv.Component.SubCategory = "7 GCODE";
+# GHENV COMPONENT SETTINGS
+ghenv.Component.Name = "GenerateGCODE"
+ghenv.Component.NickName = "GenerateGCODE"
+ghenv.Component.Category = "DDUClayPrintingSlicer"
+ghenv.Component.SubCategory = "7 GCODE"
 ```
 
 ### Component Params (C#)
 ```
-// set component params
+// GHENV COMPONENT SETTINGS
 this.Component.Name = "";
 this.Component.NickName = "";
 this.Component.Category = "DDUClayPrintingSlicer";
@@ -44,5 +44,5 @@ this.Component.SubCategory = "3 Infill";
 this.Component.SubCategory = "6 Analysis";
 this.Component.SubCategory = "7 GCODE";
 this.Component.SubCategory = "8 Visualisation";
-this.Component.SubCategory = "9 Utilities";`
+this.Component.SubCategory = "9 Utilities";
 ```

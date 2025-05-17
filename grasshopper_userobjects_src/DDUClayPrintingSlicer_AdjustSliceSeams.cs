@@ -32,7 +32,7 @@ public class Script_Instance : GH_ScriptInstance
     
     Author: Max Benjamin Eschenbach
     License: MIT License
-    Version: 250318
+    Version: 250517
     */
     #endregion
 
@@ -53,12 +53,16 @@ public class Script_Instance : GH_ScriptInstance
         {
             // reparametrize domain of first input curve
             Curves.Branches[0][0].Domain = new Rhino.Geometry.Interval(0.0, 1.0);
-            // use adjust value for first seam adjustment
+            // sanitize negative seam adjust values
             if (SeamAdjust < 0) SeamAdjust = 1.0 + SeamAdjust;
-            Curves.Branches[0][0].ChangeClosedCurveSeam(SeamAdjust);
-            // get initial sample point
+            // get normalized length parameter based on adjust value
+            double CrvLP;
+            Curves.Branches[0][0].NormalizedLengthParameter(SeamAdjust, out CrvLP);
+            // use adjust value for first seam adjustment
+            Curves.Branches[0][0].ChangeClosedCurveSeam(CrvLP);
+            // get initial sample point after seam adjustment (is now point at start)
             Point3d samplePt = Curves.Branches[0][0].PointAtStart;
-            // create random instance with seed
+            // create random instance with seed for randomization
             Random RandSeam = new Random(Seed);
 
             // loop over all branches of curves

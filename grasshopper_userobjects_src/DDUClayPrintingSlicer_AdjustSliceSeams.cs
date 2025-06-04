@@ -32,7 +32,7 @@ public class Script_Instance : GH_ScriptInstance
     
     Author: Max Benjamin Eschenbach
     License: MIT License
-    Version: 250517
+    Version: 250604
     */
     #endregion
 
@@ -87,6 +87,11 @@ public class Script_Instance : GH_ScriptInstance
                     {
                         // get cp based on sample point
                         Curves.Branches[i][j].ClosestPoint(samplePt, out t);
+                        // avoid super tiny seam adjustments to avoid invalid curves
+                        if (t < Rhino.RhinoDoc.ActiveDoc.ModelAbsoluteTolerance)
+                        {
+                            t = 0.0;
+                        }
                         // set seam
                         Curves.Branches[i][j].ChangeClosedCurveSeam(t);
                     }

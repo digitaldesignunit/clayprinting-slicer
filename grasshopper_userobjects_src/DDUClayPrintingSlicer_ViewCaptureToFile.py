@@ -14,7 +14,8 @@ ghenv.Component.NickName = "ViewCaptureToFile"
 ghenv.Component.Category = "DDUClayPrintingSlicer"
 ghenv.Component.SubCategory = "8 Visualisation"
 
-class CSC_ViewCaptureToFile(Grasshopper.Kernel.GH_ScriptInstance):
+
+class ViewCaptureToFile(Grasshopper.Kernel.GH_ScriptInstance):
     """
     Author: Anders Holden Deleuran (updated 2025 by Max Benjamin Eschenbach)
     License: MIT License

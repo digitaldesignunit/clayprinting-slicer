@@ -32,7 +32,7 @@ public class Script_Instance : GH_ScriptInstance
 
     Author: Max Benjamin Eschenbach
     License: MIT License
-    Version: 250314
+    Version: 250612
     */
     #endregion
 
@@ -57,39 +57,48 @@ public class Script_Instance : GH_ScriptInstance
 
         if (G is Mesh)
         {
-        msh = true;
-        Mesh tMesh = (Mesh) G;
-        clsd = tMesh.IsClosed;
-        if (clsd == false)
-        {
-            Curve[] nEdges = Curve.JoinCurves(Array.ConvertAll(tMesh.GetNakedEdges(), crv => crv.ToPolylineCurve()));
-            NakedEdges = nEdges;
-            nB = nEdges.Length;
+            msh = true;
+            Mesh tMesh = (Mesh) G;
+            clsd = tMesh.IsClosed;
+            if (clsd == false)
+            {
+                Curve[] nEdges = Curve.JoinCurves(Array.ConvertAll(tMesh.GetNakedEdges(), crv => crv.ToPolylineCurve()));
+                NakedEdges = nEdges;
+                nB = nEdges.Length;
+            }
+            else
+            {
+                NakedEdges = new Grasshopper.DataTree<object>();
+            }
+            IsMesh = msh;
+            Closed = clsd;
         }
-        else
+        else if ((G is Brep) | (G is Extrusion))
         {
-            NakedEdges = new Grasshopper.DataTree<object>();
-        }
-        IsMesh = msh;
-        Closed = clsd;
-        }
-        else if (G is Brep)
-        {
-        msh = false;
-        Brep tBrep = (Brep) G;
-        clsd = tBrep.IsSolid;
-        if (clsd == false)
-        {
-            Curve[] nEdges = Curve.JoinCurves(tBrep.DuplicateNakedEdgeCurves(true, true));
-            NakedEdges = nEdges;
-            nB = nEdges.Length;
-        }
-        else
-        {
-            NakedEdges = new Grasshopper.DataTree<object>();
-        }
-        IsMesh = msh;
-        Closed = clsd;
+            msh = false;
+            Brep tBrep;
+            if (G is Extrusion)
+            {
+                Extrusion tExt = (Extrusion) G;
+                tBrep = (Brep) tExt.ToBrep();
+            }
+            else
+            {
+                tBrep = (Brep) G;
+            }
+            clsd = tBrep.IsSolid;
+            if (clsd == false)
+            {
+                Curve[] nEdges = Curve.JoinCurves(tBrep.DuplicateNakedEdgeCurves(true, true));
+                NakedEdges = nEdges;
+                nB = nEdges.Length;
+            }
+            else
+            {
+                NakedEdges = new Grasshopper.DataTree<object>();
+            }
+            IsMesh = msh;
+            Closed = clsd;
         }
 
         string baseStr = "[INFO] {0}Geometry is a{1} {2}{3}!";

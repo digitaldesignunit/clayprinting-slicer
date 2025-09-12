@@ -34,7 +34,7 @@ Our slicer is not intended to replicate the algorithmic breadth of COMPAS_SLICER
 
 ## Dependencies
 
-- Clipper2GH (Install via Rhino 8 PackageManager: rhino8://package/search?name=Clipper2GH / [Food4Rhino](https://www.food4rhino.com/en/app/clipper2gh) / [GitHub](https://github.com/seghier/Clipper2GH), based on [Clipper2](https://github.com/AngusJohnson/Clipper2))
+- Clipper2GH 1.2.6 (Install via Rhino 8 PackageManager: rhino8://package/search?name=Clipper2GH / [Food4Rhino](https://www.food4rhino.com/en/app/clipper2gh) / [GitHub](https://github.com/seghier/Clipper2GH), based on [Clipper2](https://github.com/AngusJohnson/Clipper2))
 
 ## Credits & References
 

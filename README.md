@@ -13,8 +13,8 @@ Technical University of Darmstadt
 Most slicing software originates in the FFF (fused filament fabrication) domain, where extrusion dynamics, retraction, and toolpath strategies are optimized for thermoplastics. 3D-Clay Printing (also called large-deposition modeling, LDM) introduces different constraints: pressure-driven extrusion with lag, limited or no retraction, thicker extrusion beads, ideally continuous print paths. While off-the-shelf slicers such as Cura or PrusaSlicer are powerful and open source, they remain primarily tuned to filament and their abstractions do not align well with experimental LDM research and teaching.
 
 In the architectural and academic context, several more specialized approaches have emerged:
-- [COMPAS_SLICER](https://github.com/compas-dev/compas_slicer) is an open-source Python package developed within the COMPAS framework. It supports planar and non-planar slicing, metadata-rich print-points, and Grasshopper visualization. While algorithmically advanced, its dual Python/Grasshopper workflow can be a barrier in teaching contexts where students are less proficient in the computational design domain and not experienced with Python.
-- [Termite](https://www.food4rhino.com/en/app/termite), developed by Julian Jauk in the context of his PhD[1](#footnote1), is a Grasshopper plugin tailored to LDM. It offers clay-specific controls and has been applied in research on reinforcement and co-extrusion. However, to our knowledge it is distributed as a compiled Grasshopper binary, without source code, limiting transparency and the possibility for modification in teaching and collaborative research.
+- [COMPAS_SLICER](https://github.com/compas-dev/compas_slicer) [[1](#references)] is an open-source Python package developed within the [COMPAS](https://github.com/compas-dev/compas) [[2](#references)] framework. It supports planar and non-planar slicing, metadata-rich print-points, and Grasshopper visualization. While algorithmically advanced, its dual Python/Grasshopper workflow can be a barrier in teaching contexts where students are less proficient in the computational design domain and not experienced with Python.
+- [Termite](https://www.food4rhino.com/en/app/termite), developed by Julian Jauk in the context of his PhD [[3](#references)], is a Grasshopper plugin tailored to LDM. It offers clay-specific controls and has been applied in research on reinforcement and co-extrusion. However, to our knowledge it is distributed as a compiled Grasshopper binary, without source code, limiting transparency and the possibility for modification in teaching and collaborative research.
 - [Silkworm](https://www.food4rhino.com/en/app/silkworm), an earlier Grasshopper tool, translates curves into G-code and enables entirely custom toolpaths. While powerful for experimentation, it requires users to design path logic themselves, rather than providing a full slicing workflow.
 
 ## An Open Grasshopper-Based Slicer for Clay 3D-Printing
@@ -34,7 +34,9 @@ Our slicer is not intended to replicate the algorithmic breadth of COMPAS_SLICER
 
 ## References
 
-[1]: Jauk, J., 2024. Advancing 3D Printing of Clay in Architecture. Available online: https://www.researchgate.net/publication/378822643_Advancing_3D_Printing_of_Clay_in_Architecture
+[1]: Mitropoulou, I., Burger, J., 2020. COMPAS_SLICER: Slicing functionality for COMPAS. Open-source Software. Available online: https://github.com/compas-dev/compas_slicer
+[2]: Mele, T.V., others, many, 2017. COMPAS: A framework for computational research in architecture and structures. https://doi.org/10.5281/zenodo.2594510
+[3]: Jauk, J., 2024. Advancing 3D Printing of Clay in Architecture. Available online: https://www.researchgate.net/publication/378822643_Advancing_3D_Printing_of_Clay_in_Architecture
 
 ## Dependencies
 

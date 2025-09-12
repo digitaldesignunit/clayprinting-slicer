@@ -34,9 +34,11 @@ Our slicer is not intended to replicate the algorithmic breadth of COMPAS_SLICER
 
 ## References
 
-[1]: Mitropoulou, I., Burger, J., 2020. COMPAS_SLICER: Slicing functionality for COMPAS. Open-source Software. Available online: https://github.com/compas-dev/compas_slicer
-[2]: Mele, T.V., others, many, 2017. COMPAS: A framework for computational research in architecture and structures. https://doi.org/10.5281/zenodo.2594510
-[3]: Jauk, J., 2024. Advancing 3D Printing of Clay in Architecture. Available online: https://www.researchgate.net/publication/378822643_Advancing_3D_Printing_of_Clay_in_Architecture
+[1] Mitropoulou, I., Burger, J., 2020. COMPAS_SLICER: Slicing functionality for COMPAS. Open-source Software. Available online: https://github.com/compas-dev/compas_slicer
+
+[2] Mele, T.V., others, many, 2017. COMPAS: A framework for computational research in architecture and structures. https://doi.org/10.5281/zenodo.2594510
+
+[3] Jauk, J., 2024. Advancing 3D Printing of Clay in Architecture. Available online: https://www.researchgate.net/publication/378822643_Advancing_3D_Printing_of_Clay_in_Architecture
 
 ## Dependencies
 

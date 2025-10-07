@@ -17,6 +17,7 @@ Open-Source Grasshopper-based slicer, primarily for printing clay on the WASP401
 - [Dependencies](#dependencies)
 - [Learn](#learn)
 - [Contribute](#contribute)
+- [Projects using the Slicer](#projects-using-the-slicer)
 - [Credits](#credits)
 
 ## Introduction
@@ -98,7 +99,7 @@ For an introduction on how to get started with the slicer, we have the following
 
 Found a Bug? Have an idea? Know how to solve something we've been chewing on for ages? Feedback and contributions are always welcome! Feel free to look at our [code of conduct](CODE_OF_CONDUCT.md) for contributions.
 
-## Projects
+## Projects using the Slicer
 
 This slicer has been used within the following projects:
 

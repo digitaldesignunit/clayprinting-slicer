@@ -11,10 +11,12 @@ Open-Source Grasshopper-based slicer, primarily for printing clay on the WASP401
 - [Introduction](#introduction)
 - [Origins](#origins)
   - [Slicing Software for 3D-Clay Printing](#slicing-software-for-3d-clay-printing)
-  - [An Open Grasshopper-Based Slicer for Clay 3D-Printing](#an-open-grasshopper-based-slicer-for-clay-3d-printing)
+  - [An Open Grasshopper-Based Slicer for Clay 3d-printing](#an-open-grasshopper-based-slicer-for-clay-3d-printing)
   - [References](#references)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Learn](#learn)
+- [Contribute](#contribute)
 - [Credits](#credits)
 
 ## Introduction

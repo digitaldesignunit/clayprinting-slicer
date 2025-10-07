@@ -98,6 +98,18 @@ For an introduction on how to get started with the slicer, we have the following
 
 Found a Bug? Have an idea? Know how to solve something we've been chewing on for ages? Feedback and contributions are always welcome! Feel free to look at our [code of conduct](CODE_OF_CONDUCT.md) for contributions.
 
+## Projects
+
+This slicer has been used within the following projects:
+
+- [Printsugi Prototype #1 for *SHErobots: Tool, Toy, Companion* Exhibition, 2022](https://www.sydney.edu.au/architecture/about/tin-sheds-gallery/past-exhibitions/she-robots-tool-toy-companion.html)
+- [Printsugi Prototype #2 for *SHErobots: Ecologies of Care* Exhibition, 2024](https://www.tudelft.nl/library/over-the-library/evenementen/sherobots-ecologies-of-care)
+- [PRINT! Architecture Studio, Summer Semester 2023](https://www.dg.architektur.tu-darmstadt.de/studium/student_work/entwurf_ddu/print_architecture_1/print_architecture___.en.jsp)
+- [PRINT! Architecture Seminar, Summer Semester 2023](https://www.dg.architektur.tu-darmstadt.de/studium/student_work/seminare_ddu/ss23_print_architecture_seminar/ss23_print_architecture_seminar.en.jsp)
+- Clay Printing Morphologies Seminar, Winter Semester 2023/24
+- Earth, Plants & Robots Studio, Summer Semester 2025
+- [Master Thesis *Silent Silhouettes* by Stefanie Appelgrün, 2025](https://www.dg.architektur.tu-darmstadt.de/fachgebiet_ddu/news_uebersicht/dg_news_details_185024.en.jsp)
+
 ## Credits
 
 **Author: [Max Benjamin Eschenbach](https://github.com/fstwn)**  

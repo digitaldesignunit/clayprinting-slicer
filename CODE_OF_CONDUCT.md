@@ -11,7 +11,7 @@ To ensure smooth collaboration and a helpful environment for everyone, please fo
 - Add a **screenshot** to help illustrate the problem.
 - Whenever possible, upload the **Rhino (.3dm) and Grasshopper (.gh/.ghx) files** that reproduce the issue.
 
-## Releases
+## Release Action
 
 - When a release is created and pushed to the `grasshopper_release/` folder, a **GitHub release will be automatically generated** via GitHub Actions.
 - Please follow the naming and structure conventions in the `grasshopper_release/` folder to ensure automation runs smoothly:

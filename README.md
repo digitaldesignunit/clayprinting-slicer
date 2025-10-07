@@ -1,5 +1,5 @@
 # clayprinting-slicer
-Open-Source Grasshopper-based slicer for printing clay on the WASP40100 delta printer.
+Open-Source Grasshopper-based slicer, primarily for printing clay on the WASP40100.
 
 **Author: [Max Benjamin Eschenbach](https://github.com/fstwn)**  
 **Contributors:** Mirko Dutschke, Iyad Ghazal  

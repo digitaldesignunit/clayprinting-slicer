@@ -62,7 +62,7 @@ Our slicer is not intended to replicate the algorithmic breadth of COMPAS_SLICER
 
 - Go the the Releases page and download the latest release.
 - You should get a `*.zip` file containing:
-    - A Rhino/Grasshopper file duo (`YYMMDD_DDU_Clay3DPrinting_Slicer_RELEASE.3dm` & `YYMMDD_DDU_Clay3DPrinting_Slicer_RELEASE.gh`). This is the main slicer definition!
+    - A Rhino/Grasshopper file duo (`YYMMDD_DDU_Clay3DPrinting_Slicer_RELEASE.3dm` & `DDU_Clay3DPrinting_Slicer_RELEASE.gh`). This is the main slicer definition!
     - A `UserObjects` folder, containing all the Python & C# scripts within the slicer script, exported as Grasshopper UserObjects.
 
 ### If you only want to use the slicer definition...
@@ -84,13 +84,17 @@ Our slicer is not intended to replicate the algorithmic breadth of COMPAS_SLICER
 For an introduction on how to get started with the slicer, we have the following YouTube tutorials.
 
 <p align="center">
-  <a href="https://www.youtube.com/watch?v=xtB6QfOa1HQ" target="_blank">
+  <a href="https://www.youtube.com/watch?v=xtB6QfOa1HQ/" target="_blank">
     <img src="resources/250416_3DClayPrintingSlicer_Introduction_Thumbnail.jpg" alt="Tutorial 1: Introduction to the Slicer" width="480" />
     <br>
     <b>Tutorial 1: Introduction to the Slicer</b>
   </a>
 </p>
 
+
+## Contribute
+
+Found a Bug? Have an idea? Know how to solve something we've been chewing on for ages? Feedback and contributions are always welcome! Feel free to look at our [code of conduct](CODE_OF_CONDUCT.md) for contributions.
 
 ## Credits
 

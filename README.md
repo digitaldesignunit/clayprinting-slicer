@@ -161,4 +161,4 @@ When using, extending or building upon this Grasshopper definition and/or the pr
 
 ### Other Citation Styles
 
-Find pre-written citations in the style of your choice over at Zenodo.
+Find pre-written citations in the style of your choice over at [Zenodo](https://doi.org/10.5281/zenodo.17295031) (Citation box on the right side).

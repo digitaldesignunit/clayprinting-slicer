@@ -19,6 +19,7 @@ Open-Source Grasshopper-based slicer, primarily for printing clay on the WASP401
 - [Contribute](#contribute)
 - [Projects using the Slicer](#projects-using-the-slicer)
 - [Credits](#credits)
+- [Citing](#citing)
 
 ## Introduction
 
@@ -127,4 +128,25 @@ Technical University of Darmstadt
 - Original "ViewCaptureToFile" GhPython Component by [Anders Holden Deleuran](https://github.com/AndersDeleuran); adapted by [Max Benjamin Eschenbach](https://github.com/fstwn), 2025
 - "MeshPipeChromo" C# Component for fast mesh piping by Cameron Newnham ([Chromodoris Plugin](https://github.com/camnewnham/ChromodorisGH)), Copyright 2015-2016; Licensed and distributed under GNU GPL
 - The definition uses some Components taken from [Xylinus](https://www.food4rhino.com/en/app/xylinus-novel-control-3d-printing#) by Ryan Hoover (Independent Studio / MICA dFab / BUGSS)
+
+## Citing
+
+If you use this Grasshopper definition and/or the provided UserObjects in your work, please reference it accordingly:
+
+```
+@misc{eschenbach_digitaldesignunit_clayprinting-slicer_2025,
+	title = {digitaldesignunit/clayprinting-slicer: An Open Grasshopper-Based Slicer for Clay 3D-Printing},
+	copyright = {MIT License},
+	shorttitle = {digitaldesignunit/clayprinting-slicer},
+	url = {DOI_URL},
+	abstract = {An Open Grasshopper-Based Slicer for Clay 3D-Printing.},
+	urldate = {2025-05-12},
+	publisher = {Zenodo},
+	author = {Eschenbach, Max Benjamin},
+	month = may,
+	year = {2025},
+	doi = {DOIDOIDOI},
+}
+
+```
 

@@ -2,7 +2,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.8-blue.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
-[![DOI]]
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17295031.svg)](https://doi.org/10.5281/zenodo.17295031)
 
 Open-Source Grasshopper-based slicer, primarily for printing clay on the WASP40100.
 
@@ -143,18 +143,19 @@ When using, extending or building upon this Grasshopper definition and/or the pr
 ### BibTex
 
 ```
-@software{eschenbach_digitaldesignunit_clayprinting-slicer_2025,
-  title = {DDU Clayprinting Slicer: An Open Grasshopper-Based Slicer for Clay 3D-Printing},
+@software{eschenbach_2025_17295032,
+  author       = {Eschenbach, Max Benjamin and
+                  Tessmann, Oliver},
+  title        = {DDU Clay 3D-Printing Slicer (v0.2.14)},
   copyright = {MIT License},
   shorttitle = {digitaldesignunit/clayprinting-slicer},
   abstract = {An Open Grasshopper-Based Slicer for Clay 3D-Printing.},
-  version = {0.2.14},
-  publisher = {Zenodo},
-  author = {Eschenbach, Max Benjamin and Tessmann, Oliver},
-  month = oct,
-  year = {2025},
-  doi = {DOIDOIDOI},
-  url = {DOI_URL},
+  month        = oct,
+  year         = 2025,
+  publisher    = {Zenodo},
+  version      = {v0.2.14},
+  doi          = {10.5281/zenodo.17295031},
+  url          = {https://doi.org/10.5281/zenodo.17295031},
 }
 ```
 

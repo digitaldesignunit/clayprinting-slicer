@@ -6,7 +6,7 @@
 
 Open-Source Grasshopper-based slicer, primarily for printing clay on the WASP40100.
 
-![DDU clayprinting-slicer](/resources/251008_ClayPrintingSlicer_Header_Image.jpg)
+![DDU clayprinting-slicer](/resources/readme/251008_ClayPrintingSlicer_Header_Image.jpg)
 
 
 ## Contents
@@ -92,7 +92,7 @@ For an introduction on how to get started with the slicer, we have the following
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=xtB6QfOa1HQ/" target="_blank">
-    <img src="resources/250416_3DClayPrintingSlicer_Introduction_Thumbnail.jpg" alt="Tutorial 1: Introduction to the Slicer" width="480" />
+    <img src="resources/readme/250416_3DClayPrintingSlicer_Introduction_Thumbnail.jpg" alt="Tutorial 1: Introduction to the Slicer" width="480" />
     <br>
     <b>Tutorial 1: Introduction to the Slicer</b>
   </a>

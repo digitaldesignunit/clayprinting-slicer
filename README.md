@@ -144,16 +144,16 @@ When using, extending or building upon this Grasshopper definition and/or the pr
 
 ```
 @software{eschenbach_digitaldesignunit_clayprinting-slicer_2025,
-	title = {DDU Clayprinting Slicer: An Open Grasshopper-Based Slicer for Clay 3D-Printing},
-	copyright = {MIT License},
-	shorttitle = {digitaldesignunit/clayprinting-slicer},
-	abstract = {An Open Grasshopper-Based Slicer for Clay 3D-Printing.},
+  title = {DDU Clayprinting Slicer: An Open Grasshopper-Based Slicer for Clay 3D-Printing},
+  copyright = {MIT License},
+  shorttitle = {digitaldesignunit/clayprinting-slicer},
+  abstract = {An Open Grasshopper-Based Slicer for Clay 3D-Printing.},
   version = {0.2.13},
-	publisher = {Zenodo},
-	author = {Eschenbach, Max Benjamin},
-	month = oct,
-	year = {2025},
-	doi = {DOIDOIDOI},
+  publisher = {Zenodo},
+  author = {Eschenbach, Max Benjamin},
+  month = oct,
+  year = {2025},
+  doi = {DOIDOIDOI},
   url = {DOI_URL},
 }
 ```

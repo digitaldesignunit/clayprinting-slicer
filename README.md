@@ -117,6 +117,8 @@ This slicer has been used within the following projects:
 
 ## Credits
 
+### Authors
+
 **Author: [Max Benjamin Eschenbach](https://github.com/fstwn)**  
 **Contributors:** [Nadja Gaudillière-Jami](https://ngj.fyi/), Mirko Dutschke, Iyad Ghazal  
 
@@ -124,6 +126,8 @@ This slicer has been used within the following projects:
 *Prof. Dr.-Ing. Oliver Tessmann*  
 Fachbereich Architektur  
 Technical University of Darmstadt
+
+### References
 
 - Original GCODE Generator Script by [Tom Svilans](https://github.com/tsvilans) ([CITA Copenhagen](https://github.com/CITA-cph)); adapted by [Max Benjamin Eschenbach](https://github.com/fstwn), 2023
 - Original Heat Method Script by Daniel Piker ([McNeel Discourse Link](https://discourse.mcneel.com/t/heat-method/105135)); adapted for Non-Planar Slicing by [Max Benjamin Eschenbach](https://github.com/fstwn), 2023
@@ -134,7 +138,9 @@ Technical University of Darmstadt
 
 ## Citing
 
-If you use this Grasshopper definition and/or the provided UserObjects in your work, please reference it accordingly:
+When using, extending or building upon this Grasshopper definition and/or the provided UserObjects in your work, please reference it accordingly:
+
+### BibTex
 
 ```
 @misc{eschenbach_digitaldesignunit_clayprinting-slicer_2025,
@@ -150,6 +156,8 @@ If you use this Grasshopper definition and/or the provided UserObjects in your w
 	year = {2025},
 	doi = {DOIDOIDOI},
 }
-
 ```
 
+### Other Citation Styles
+
+Find pre-written citations in the style of your choice over at Zenodo.

@@ -113,7 +113,7 @@ This slicer has been used within the following projects:
 - Clay Printing Morphologies Seminar, Winter Semester 2023/24
 - [Printsugi Prototype #2 for *SHErobots: Ecologies of Care* Exhibition, 2024](https://www.tudelft.nl/library/over-the-library/evenementen/sherobots-ecologies-of-care)
 - Earth, Plants & Robots Studio, Summer Semester 2025
-- [Master Thesis *Silent Silhouettes* by Stefanie Appelgrün, 2025](https://www.dg.architektur.tu-darmstadt.de/fachgebiet_ddu/news_uebersicht/dg_news_details_185024.en.jsp)
+- [Master Thesis *Silent Silhouettes* by Stefanie Appelgrün, 2025](https://www.dg.architektur.tu-darmstadt.de/studium/student_work/master_thesis/silent_silhouettes/silent_silhouettes.en.jsp)
 
 ## Credits
 
